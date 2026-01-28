@@ -145,10 +145,37 @@
 
         .artist-img {
             width: 100%;
-            height: 220px;
+            height: 100px;
             object-fit: cover;
             border-radius: 16px;
         }
+
+        .artist-scroll-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .artist-scroll-track {
+            display: flex;
+            width: max-content;
+            animation: scrollArtists 25s linear infinite;
+        }
+
+        .artist-item {
+            flex: 0 0 250px;
+            margin-right: 20px;
+        }
+
+        @keyframes scrollArtists {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
 
         /* ================= ジャンル ================= */
         .genre-card {
@@ -317,19 +344,23 @@
 
                         <!-- ROCK -->
                         <div class="col-md-4">
-                            <div class="card event-card h-100">
-                                <img src="img/RockNight.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <span class="badge bg-danger mb-2">ロック</span>
-                                    <h5 class="fw-bold">ROCKERS LIVE 2026</h5>
-                                    <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill text-danger"></i> 東京ドーム</p>
-                                    <p class="text-muted small">THE ROCKERS・METAL FORCE出演</p>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="badge bg-success">販売中</span>
-                                        <small class="text-muted">¥7,800〜</small>
+                            <a href="event-rockers.html" class="text-decoration-none text-dark">
+                                <div class="card event-card h-100">
+                                    <img src="img/RockNight.png" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <span class="badge bg-danger mb-2">ロック</span>
+                                        <h5 class="fw-bold">ROCKERS LIVE 2026</h5>
+                                        <p class="text-muted mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i> 東京ドーム
+                                        </p>
+                                        <p class="text-muted small">THE ROCKERS・METAL FORCE出演</p>
+                                        <div class="d-flex justify-content-between">
+                                            <span class="badge bg-success">販売中</span>
+                                            <small class="text-muted">¥7,800〜</small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- EDM -->
@@ -428,22 +459,15 @@
 
 
             <!-- 人気アーティスト -->
-            <section class="mb-5">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="fw-bold">
-                        <i class="bi bi-star-fill text-warning"></i> 人気アーティスト
-                    </h2>
-                    <a href="music-artist-list.html" class="btn btn-outline-primary">
-                        すべて見る <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
+            <!-- ▼ 自動スクロールアーティスト -->
+            <div class="artist-scroll-wrapper overflow-hidden">
+                <div class="artist-scroll-track">
 
-                <div class="row g-4">
-
-                    <!-- 1 -->
-                    <div class="col-6 col-md-3">
+                    <!-- ここから1セット目 -->
+                    <div class="artist-item">
+                        <!-- THE ROCKERS -->
                         <a href="artist-rockers.html" class="text-decoration-none text-dark">
-                            <div class="card artist-card text-center h-100 p-3">
+                            <div class="card artist-card text-center p-3">
                                 <img src="img/ROCKERS.png" class="artist-img mb-3">
                                 <h5 class="fw-bold mb-1">THE ROCKERS</h5>
                                 <p class="text-muted small mb-2">ロックバンド</p>
@@ -452,10 +476,10 @@
                         </a>
                     </div>
 
-                    <!-- 2 -->
-                    <div class="col-6 col-md-3">
+                    <!-- DJ WAVE -->
+                    <div class="artist-item">
                         <a href="artist-djwave.html" class="text-decoration-none text-dark">
-                            <div class="card artist-card text-center h-100 p-3">
+                            <div class="card artist-card text-center p-3">
                                 <img src="img/DJ WAVE.png" class="artist-img mb-3">
                                 <h5 class="fw-bold mb-1">DJ WAVE</h5>
                                 <p class="text-muted small mb-2">DJ / プロデューサー</p>
@@ -464,10 +488,10 @@
                         </a>
                     </div>
 
-                    <!-- 3 -->
-                    <div class="col-6 col-md-3">
+                    <!-- JAZZ QUINTET -->
+                    <div class="artist-item">
                         <a href="artist-jazzquintet.html" class="text-decoration-none text-dark">
-                            <div class="card artist-card text-center h-100 p-3">
+                            <div class="card artist-card text-center p-3">
                                 <img src="img/JAZZ QUINTET.png" class="artist-img mb-3">
                                 <h5 class="fw-bold mb-1">JAZZ QUINTET</h5>
                                 <p class="text-muted small mb-2">ジャズバンド</p>
@@ -476,10 +500,10 @@
                         </a>
                     </div>
 
-                    <!-- 4 -->
-                    <div class="col-6 col-md-3">
+                    <!-- ACOUSTIC -->
+                    <div class="artist-item">
                         <a href="artist-acoustic.html" class="text-decoration-none text-dark">
-                            <div class="card artist-card text-center h-100 p-3">
+                            <div class="card artist-card text-center p-3">
                                 <img src="img/ACOUSTIC DUO.png" class="artist-img mb-3">
                                 <h5 class="fw-bold mb-1">ACOUSTIC DUO</h5>
                                 <p class="text-muted small mb-2">アコースティック</p>
@@ -488,56 +512,60 @@
                         </a>
                     </div>
 
-                    <!-- 5 -->
-                    <div class="col-6 col-md-3">
-                        <a href="artist-mcflow.html" class="text-decoration-none text-dark">
-                            <div class="card artist-card text-center h-100 p-3">
-                                <img src="img/MC FLOW.png" class="artist-img mb-3">
-                                <h5 class="fw-bold mb-1">MC FLOW</h5>
-                                <p class="text-muted small mb-2">ラッパー</p>
-                                <span class="badge" style="background:#f59e0b;">ヒップホップ</span>
+                    <!-- 👉 ここからコピー（2周目用） -->
+                    <!-- 同じ4つをもう一回並べる -->
+                    <!-- THE ROCKERS -->
+                    <div class="artist-item">
+                        <a href="artist-rockers.html" class="text-decoration-none text-dark">
+                            <div class="card artist-card text-center p-3">
+                                <img src="img/ROCKERS.png" class="artist-img mb-3">
+                                <h5 class="fw-bold mb-1">THE ROCKERS</h5>
+                                <p class="text-muted small mb-2">ロックバンド</p>
+                                <span class="badge bg-danger">ロック</span>
                             </div>
                         </a>
                     </div>
 
-                    <!-- 6 -->
-                    <div class="col-6 col-md-3">
-                        <a href="artist-popstars.html" class="text-decoration-none text-dark">
-                            <div class="card artist-card text-center h-100 p-3">
-                                <img src="img/POP STARS.png" class="artist-img mb-3">
-                                <h5 class="fw-bold mb-1">POP STARS</h5>
-                                <p class="text-muted small mb-2">ポップグループ</p>
-                                <span class="badge bg-warning text-dark">ポップ</span>
+                    <!-- DJ WAVE -->
+                    <div class="artist-item">
+                        <a href="artist-djwave.html" class="text-decoration-none text-dark">
+                            <div class="card artist-card text-center p-3">
+                                <img src="img/DJ WAVE.png" class="artist-img mb-3">
+                                <h5 class="fw-bold mb-1">DJ WAVE</h5>
+                                <p class="text-muted small mb-2">DJ / プロデューサー</p>
+                                <span class="badge" style="background:#a855f7;">EDM</span>
                             </div>
                         </a>
                     </div>
 
-                    <!-- 7 -->
-                    <div class="col-6 col-md-3">
-                        <a href="artist-metalforce.html" class="text-decoration-none text-dark">
-                            <div class="card artist-card text-center h-100 p-3">
-                                <img src="img/METAR FORCE.png" class="artist-img mb-3">
-                                <h5 class="fw-bold mb-1">METAL FORCE</h5>
-                                <p class="text-muted small mb-2">メタルバンド</p>
-                                <span class="badge bg-dark">メタル</span>
+                    <!-- JAZZ QUINTET -->
+                    <div class="artist-item">
+                        <a href="artist-jazzquintet.html" class="text-decoration-none text-dark">
+                            <div class="card artist-card text-center p-3">
+                                <img src="img/JAZZ QUINTET.png" class="artist-img mb-3">
+                                <h5 class="fw-bold mb-1">JAZZ QUINTET</h5>
+                                <p class="text-muted small mb-2">ジャズバンド</p>
+                                <span class="badge bg-info">ジャズ</span>
                             </div>
                         </a>
                     </div>
 
-                    <!-- 8 -->
-                    <div class="col-6 col-md-3">
-                        <a href="artist-soulsinger.html" class="text-decoration-none text-dark">
-                            <div class="card artist-card text-center h-100 p-3">
-                                <img src="img/SOUL SINGER.png" class="artist-img mb-3">
-                                <h5 class="fw-bold mb-1">SOUL SINGER</h5>
-                                <p class="text-muted small mb-2">ソウルシンガー</p>
-                                <span class="badge bg-primary">R&B</span>
+                    <!-- ACOUSTIC -->
+                    <div class="artist-item">
+                        <a href="artist-acoustic.html" class="text-decoration-none text-dark">
+                            <div class="card artist-card text-center p-3">
+                                <img src="img/ACOUSTIC DUO.png" class="artist-img mb-3">
+                                <h5 class="fw-bold mb-1">ACOUSTIC DUO</h5>
+                                <p class="text-muted small mb-2">アコースティック</p>
+                                <span class="badge bg-success">フォーク</span>
                             </div>
                         </a>
                     </div>
 
                 </div>
-            </section>
+            </div>
+
+
 
             <!-- ジャンル別検索 -->
             <section class="mb-5">
