@@ -1,32 +1,73 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUMMER MUSIC FESTIVAL 2024 - LiveHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+
+
+
     <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
+
         :root {
             --primary-color: #8b5cf6;
             --secondary-color: #ec4899;
             --accent-color: #06b6d4;
             --dark-bg: #18181b;
         }
-        
+
         .navbar {
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+            background: linear-gradient(135deg, #ff9acb 0%, #b79cff 100%);
+            box-shadow: 0 4px 15px rgba(255, 154, 203, 0.4);
         }
-        
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar .nav-link {
+            color: white !important;
+            font-weight: 600;
+            transition: opacity .2s, transform .2s;
+        }
+
+        .navbar .nav-link:hover {
+            opacity: .85;
+            transform: translateY(-2px);
+        }
+
+        .navbar .btn-warning {
+            background: #fff3b0;
+            border: none;
+            color: #7a4a00;
+            border-radius: 999px;
+            padding: 6px 18px;
+        }
+
+        .navbar .btn-warning:hover {
+            background: #ffe066;
+        }
+
         .hero-image {
             width: 100%;
             height: 450px;
             object-fit: cover;
             border-radius: 20px;
         }
-        
+
         .event-header {
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--dark-bg), var(--primary-color) 50%, var(--secondary-color));
             color: white;
             padding: 40px;
             border-radius: 20px;
@@ -34,65 +75,65 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .info-card {
             background: white;
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
             margin-bottom: 20px;
         }
-        
+
         .carousel-item img {
             height: 400px;
             object-fit: cover;
             border-radius: 15px;
         }
-        
+
         .artist-card {
-            transition: transform 0.3s ease;
+            transition: .3s;
             cursor: pointer;
             border: none;
             border-radius: 15px;
             overflow: hidden;
         }
-        
+
         .artist-card:hover {
             transform: scale(1.05);
         }
-        
+
         .artist-img {
             width: 100%;
             height: 180px;
             object-fit: cover;
         }
-        
+
         .timetable-section {
             background: white;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
         }
-        
+
         .accordion-button:not(.collapsed) {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
         }
-        
+
         .stage-badge {
-            padding: 0.5rem 1rem;
+            padding: .5rem 1rem;
             border-radius: 20px;
             font-weight: 600;
         }
-        
+
         .time-slot {
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(139, 92, 246, .1);
             padding: 15px;
             border-radius: 10px;
             border-left: 4px solid var(--primary-color);
             margin-bottom: 10px;
         }
-        
+
         .stat-box {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
@@ -100,7 +141,7 @@
             border-radius: 15px;
             text-align: center;
         }
-        
+
         .ticket-cta {
             background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
             color: white;
@@ -108,17 +149,29 @@
             border-radius: 15px;
             text-align: center;
         }
-        
+
+        /* フッター */
         footer {
-            background-color: var(--dark-bg);
+            background: linear-gradient(135deg, #fbcfe8 0%, #f9a8d4 50%, #c7d2fe 100%);
             color: white;
-            margin-top: 60px;
+            margin-top: 80px;
+            padding-top: 50px;
+            box-shadow: 0 -12px 30px rgba(249, 168, 212, .45);
+        }
+
+        .footer-hover {
+            transition: transform .35s ease;
+        }
+
+        .footer-hover:hover {
+            transform: translateY(-4px);
         }
     </style>
 </head>
+
 <body>
     <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
                 <i class="bi bi-music-note-beamed"></i> LiveHub
@@ -129,24 +182,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ホーム</a>
+                        <a class="nav-link" href="index.html">ホーム</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">イベント一覧</a>
+                        <a class="nav-link" href="music-festival-list.html">イベント一覧</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">アーティスト</a>
+                        <a class="nav-link" href="music-artist-list.html">アーティスト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">チケット購入</a>
+                        <a class="nav-link" href="music-festival-ticket.html">チケット購入</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">マイチケット</a>
+                        <a class="nav-link" href="music-festival-myticket.html">マイチケット</a>
                     </li>
                 </ul>
-                <button class="btn btn-light ms-3 fw-bold">
+                <a href="music-login-page.html" class="btn btn-light ms-3 fw-bold">
                     <i class="bi bi-person-circle"></i> ログイン
-                </button>
+                </a>
             </div>
         </div>
     </nav>
@@ -155,8 +208,8 @@
         <!-- パンくずリスト -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">ホーム</a></li>
-                <li class="breadcrumb-item"><a href="#">イベント一覧</a></li>
+                <li class="breadcrumb-item"><a href="index.html">ホーム</a></li>
+                <li class="breadcrumb-item"><a href="music-festival-list.html">イベント一覧</a></li>
                 <li class="breadcrumb-item active" aria-current="page">SUMMER MUSIC FESTIVAL 2024</li>
             </ol>
         </nav>
@@ -171,16 +224,16 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://placehold.co/1200x400/8b5cf6/ffffff?text=Main+Stage" class="d-block w-100" alt="メインステージ">
+                    <img src="img/SUMMER MUSIC FESTIVAL_MainStage.png" class="d-block w-100" alt="メインステージ">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://placehold.co/1200x400/ec4899/ffffff?text=Past+Event+1" class="d-block w-100" alt="過去の様子1">
+                    <img src="img/1.png" class="d-block w-100" alt="過去の様子1">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://placehold.co/1200x400/06b6d4/ffffff?text=Past+Event+2" class="d-block w-100" alt="過去の様子2">
+                    <img src="img/2.png" class="d-block w-100" alt="過去の様子2">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://placehold.co/1200x400/10b981/ffffff?text=Festival+Atmosphere" class="d-block w-100" alt="会場の雰囲気">
+                    <img src="img/huniki.png" class="d-block w-100" alt="会場の雰囲気">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
@@ -219,9 +272,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4 text-lg-end">
-                    <button class="btn btn-warning btn-lg fw-bold mb-2 w-100">
+                    <a href="music-festival-ticket.html" class="btn btn-warning btn-lg fw-bold mb-2 w-100">
                         <i class="bi bi-ticket-perforated"></i> チケットを購入
-                    </button>
+                    </a>
                     <button class="btn btn-outline-light btn-lg w-100 mb-2">
                         <i class="bi bi-heart"></i> お気に入りに追加
                     </button>
@@ -252,17 +305,19 @@
                 <!-- タイムテーブル -->
                 <div class="timetable-section mb-4">
                     <h3 class="fw-bold mb-4"><i class="bi bi-clock-history text-primary"></i> タイムテーブル</h3>
-                    
+
                     <div class="accordion" id="timetableAccordion">
                         <!-- メインステージ -->
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mainStage">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#mainStage">
                                     <span class="stage-badge bg-danger text-white me-3">MAIN STAGE</span>
                                     メインステージ
                                 </button>
                             </h2>
-                            <div id="mainStage" class="accordion-collapse collapse show" data-bs-parent="#timetableAccordion">
+                            <div id="mainStage" class="accordion-collapse collapse show"
+                                data-bs-parent="#timetableAccordion">
                                 <div class="accordion-body">
                                     <div class="time-slot">
                                         <div class="d-flex justify-content-between align-items-center">
@@ -311,7 +366,8 @@
                         <!-- サブステージ -->
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#subStage">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#subStage">
                                     <span class="stage-badge bg-info text-white me-3">SUB STAGE</span>
                                     サブステージ
                                 </button>
@@ -355,8 +411,10 @@
                         <!-- DJ STAGE -->
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#djStage">
-                                    <span class="stage-badge text-white me-3" style="background-color: #8b5cf6;">DJ STAGE</span>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#djStage">
+                                    <span class="stage-badge text-white me-3" style="background-color: #8b5cf6;">DJ
+                                        STAGE</span>
                                     DJステージ
                                 </button>
                             </h2>
@@ -404,7 +462,7 @@
                     <div class="row g-3">
                         <div class="col-6 col-md-4">
                             <div class="card artist-card">
-                                <img src="https://placehold.co/200x180/ff6b6b/ffffff?text=Artist+1" class="artist-img" alt="THE ROCKERS">
+                                <img src="img/ROCKERS.png" class="artist-img" alt="THE ROCKERS">
                                 <div class="card-body text-center">
                                     <h6 class="fw-bold mb-1">THE ROCKERS</h6>
                                     <small class="text-muted">16:00 - 16:45</small>
@@ -413,7 +471,7 @@
                         </div>
                         <div class="col-6 col-md-4">
                             <div class="card artist-card">
-                                <img src="https://placehold.co/200x180/ec4899/ffffff?text=Artist+2" class="artist-img" alt="POP STARS">
+                                <img src="img/POP STARS.png" class="artist-img" alt="POP STARS">
                                 <div class="card-body text-center">
                                     <h6 class="fw-bold mb-1">POP STARS</h6>
                                     <small class="text-muted">17:00 - 17:45</small>
@@ -422,7 +480,7 @@
                         </div>
                         <div class="col-6 col-md-4">
                             <div class="card artist-card">
-                                <img src="https://placehold.co/200x180/8b5cf6/ffffff?text=Artist+3" class="artist-img" alt="METAL FORCE">
+                                <img src="img/METAR FORCE.png" class="artist-img" alt="METAL FORCE">
                                 <div class="card-body text-center">
                                     <h6 class="fw-bold mb-1">METAL FORCE</h6>
                                     <small class="text-muted">18:00 - 19:00</small>
@@ -431,7 +489,7 @@
                         </div>
                         <div class="col-6 col-md-4">
                             <div class="card artist-card">
-                                <img src="https://placehold.co/200x180/06b6d4/ffffff?text=Artist+4" class="artist-img" alt="DJ WAVE">
+                                <img src="img/DJ WAVE.png" class="artist-img" alt="DJ WAVE">
                                 <div class="card-body text-center">
                                     <h6 class="fw-bold mb-1">DJ WAVE</h6>
                                     <small class="text-muted">16:30 - 17:15</small>
@@ -440,7 +498,7 @@
                         </div>
                         <div class="col-6 col-md-4">
                             <div class="card artist-card">
-                                <img src="https://placehold.co/200x180/f59e0b/ffffff?text=Artist+5" class="artist-img" alt="MC FLOW">
+                                <img src="img/MC FLOW.png" class="artist-img" alt="MC FLOW">
                                 <div class="card-body text-center">
                                     <h6 class="fw-bold mb-1">MC FLOW</h6>
                                     <small class="text-muted">17:30 - 18:15</small>
@@ -449,7 +507,7 @@
                         </div>
                         <div class="col-6 col-md-4">
                             <div class="card artist-card">
-                                <img src="https://placehold.co/200x180/10b981/ffffff?text=Artist+6" class="artist-img" alt="ACOUSTIC DUO">
+                                <img src="img/ACOUSTIC DUO.png" class="artist-img" alt="ACOUSTIC DUO">
                                 <div class="card-body text-center">
                                     <h6 class="fw-bold mb-1">ACOUSTIC DUO</h6>
                                     <small class="text-muted">18:30 - 19:30</small>
@@ -458,9 +516,9 @@
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-primary">
-                            すべてのアーティストを見る <i class="bi bi-arrow-right"></i>
-                        </button>
+                        <a href="music-artist-list.html" class="btn btn-outline-primary">
+                            全てのアーティストを見る<i class="bi bi-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -475,7 +533,9 @@
                         <i class="bi bi-train-front"></i> りんかい線「国際展示場駅」徒歩7分 / ゆりかもめ「国際展示場正門駅」徒歩3分
                     </p>
                     <div class="ratio ratio-16x9">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3244.0!2d139.7945!3d35.6298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM!5e0!3m2!1sja!2sjp!4v1234567890" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3244.0!2d139.7945!3d35.6298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM!5e0!3m2!1sja!2sjp!4v1234567890"
+                            style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -529,9 +589,9 @@
                             <strong>¥6,000</strong>
                         </div>
                     </div>
-                    <button class="btn btn-warning btn-lg w-100 fw-bold">
+                    <a href="music-festival-ticket.html" class="btn btn-warning btn-lg w-100 fw-bold">
                         今すぐ購入 <i class="bi bi-arrow-right"></i>
-                    </button>
+                    </a>
                 </div>
 
                 <!-- 注意事項 -->
@@ -561,26 +621,27 @@
                 <div class="col-md-2 mb-3">
                     <h6 class="fw-bold mb-3">サイト情報</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">About</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">利用規約</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">プライバシー</a></li>
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">About</a></li>
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">利用規約</a></li>
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">プライバシー</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-3">
                     <h6 class="fw-bold mb-3">サポート</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">ヘルプ</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">お問い合わせ</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">ヘルプ</a></li>
+                        <li class="footer-hover"><a href="form.html" class="text-light text-decoration-none">お問い合わせ</a>
+                        </li>
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h6 class="fw-bold mb-3">フォローする</h6>
                     <div class="d-flex gap-3">
-                        <a href="#" class="text-light"><i class="bi bi-twitter fs-4"></i></a>
-                        <a href="#" class="text-light"><i class="bi bi-instagram fs-4"></i></a>
-                        <a href="#" class="text-light"><i class="bi bi-youtube fs-4"></i></a>
-                        <a href="#" class="text-light"><i class="bi bi-spotify fs-4"></i></a>
+                        <a href="#" class="text-light footer-hover"><i class="bi bi-twitter fs-4"></i></a>
+                        <a href="#" class="text-light footer-hover"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-light footer-hover"><i class="bi bi-youtube fs-4"></i></a>
+                        <a href="#" class="text-light footer-hover"><i class="bi bi-spotify fs-4"></i></a>
                     </div>
                 </div>
             </div>
@@ -591,4 +652,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -1,62 +1,148 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>イベント一覧 - LiveHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="img/favicon.ico">
+
+
     <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #fafafa;
+        }
+
         :root {
             --primary-color: #8b5cf6;
             --secondary-color: #ec4899;
             --accent-color: #06b6d4;
             --dark-bg: #18181b;
         }
-        
-        body {
-            background-color: #fafafa;
-        }
-        
+
         .navbar {
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+            background: linear-gradient(135deg, #ff9acb 0%, #b79cff 100%);
+            box-shadow: 0 4px 15px rgba(255, 154, 203, 0.4);
         }
-        
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar .nav-link {
+            color: white !important;
+            font-weight: 600;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .navbar .nav-link:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        .navbar .btn-warning {
+            background-color: #fff3b0;
+            border: none;
+            color: #7a4a00;
+            border-radius: 999px;
+            padding: 6px 18px;
+        }
+
+        .navbar .nav-link.active {
+            color: #7a4cff !important;
+            font-weight: bold;
+        }
+
+        .navbar .nav-link {
+            color: #fff !important;
+            transition: 0.2s;
+        }
+
+        .navbar .nav-link:hover {
+            color: #7a4cff !important;
+        }
+
+
+
         .page-header {
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, #fbcfe8 0%, #f9a8d4 45%, #c7d2fe 100%);
             color: white;
-            padding: 80px 0 50px 0;
-            margin-bottom: 40px;
+            padding: 90px 0 65px;
+            margin-bottom: 50px;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+            box-shadow: 0 14px 35px rgba(249, 168, 212, 0.5);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.45), transparent 65%);
+        }
+
+        .page-header h1 {
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .page-header p {
+            opacity: 0.95;
+        }
+
+        .page-header .form-control {
+            border-radius: 999px 0 0 999px;
+            border: none;
+            padding-left: 22px;
+        }
+
+        .page-header .btn {
+            border-radius: 0 999px 999px 0;
+            background: white;
+            color: #db2777;
+            font-weight: 700;
+        }
+
+        .page-header .btn:hover {
+            background: #fce7f3;
+        }
+
         .filter-card {
             position: sticky;
             top: 20px;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
-        
+
         .event-list-card {
             transition: all 0.3s ease;
             border: none;
             border-radius: 15px;
             overflow: hidden;
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        
+
         .event-list-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
         }
-        
+
         .event-list-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-        
+
         .venue-badge {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
@@ -64,7 +150,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
         }
-        
+
         .price-tag {
             background: var(--accent-color);
             color: white;
@@ -72,25 +158,25 @@
             border-radius: 10px;
             font-weight: bold;
         }
-        
+
         .filter-section {
             background-color: #f8f9fa;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
         }
-        
+
         .form-check-input:checked {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
         }
-        
+
         .sort-btn.active {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
         }
-        
+
         .genre-filter-badge {
             cursor: pointer;
             transition: all 0.2s ease;
@@ -98,16 +184,16 @@
             border-radius: 25px;
             font-weight: 500;
         }
-        
+
         .genre-filter-badge:hover {
             transform: translateY(-2px);
         }
-        
+
         .genre-filter-badge.active {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
             color: white !important;
         }
-        
+
         .date-badge {
             background: rgba(139, 92, 246, 0.1);
             color: var(--primary-color);
@@ -115,17 +201,63 @@
             border-radius: 10px;
             font-weight: 600;
         }
-        
+
+        /* フッター */
         footer {
-            background-color: var(--dark-bg);
+            background: linear-gradient(135deg, #fbcfe8 0%, #f9a8d4 50%, #c7d2fe 100%);
             color: white;
-            margin-top: 60px;
+            margin-top: 80px;
+            padding-top: 50px;
+            box-shadow: 0 -12px 30px rgba(249, 168, 212, .45);
+        }
+
+        .footer-hover {
+            transition: transform .35s ease;
+        }
+
+        .footer-hover:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ページネーション */
+        .pagination .page-link {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: #f4e8ff;
+            font-weight: 600;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+            transition: 0.2s;
+        }
+
+        /* ホバー */
+        .pagination .page-link:hover {
+            background: #e4d3ff;
+        }
+
+        /* アクティブ */
+        .pagination .page-item.active .page-link {
+            background: #c8b6ff;
+            color: #fff;
+        }
+
+        /* disabled */
+        .pagination .page-item.disabled .page-link {
+            background: #eee;
+            color: #888;
+            box-shadow: none;
+        }
+
+        /* アイコンの余白 */
+        .pagination .page-link i {
+            font-size: 0.9rem;
         }
     </style>
 </head>
+
 <body>
     <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
                 <i class="bi bi-music-note-beamed"></i> LiveHub
@@ -136,24 +268,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ホーム</a>
+                        <a class="nav-link" href="index.html">ホーム</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">イベント一覧</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">アーティスト</a>
+                        <a class="nav-link" href="music-artist-list.html">アーティスト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">チケット購入</a>
+                        <a class="nav-link" href="music-festival-ticket.html">チケット購入</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">マイチケット</a>
+                        <a class="nav-link" href="music-festival-myticket.html">マイチケット</a>
                     </li>
                 </ul>
-                <button class="btn btn-light ms-3 fw-bold">
+                <a href="music-login-page.html" class="btn btn-light ms-3 fw-bold">
                     <i class="bi bi-person-circle"></i> ログイン
-                </button>
+                </a>
             </div>
         </div>
     </nav>
@@ -163,7 +295,7 @@
         <div class="container">
             <h1 class="display-4 fw-bold mb-3">イベント一覧</h1>
             <p class="lead">全国で開催される音楽イベントを探そう</p>
-            <div class="row mt-4">
+            <div class="row mt-4 justify-content-center">
                 <div class="col-md-8">
                     <div class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="イベント名、アーティスト名、会場名で検索...">
@@ -176,13 +308,15 @@
         </div>
     </div>
 
+
+
     <div class="container">
         <div class="row">
             <!-- フィルターサイドバー -->
             <div class="col-lg-3">
                 <div class="filter-card p-4">
                     <h5 class="fw-bold mb-4"><i class="bi bi-funnel-fill"></i> フィルター</h5>
-                    
+
                     <!-- 日程 -->
                     <div class="filter-section">
                         <h6 class="fw-bold mb-3">開催日程</h6>
@@ -345,7 +479,8 @@
                 <!-- ツールバー -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
-                        <h5 class="mb-0">検索結果: <span class="fw-bold" style="color: var(--primary-color);">123件</span></h5>
+                        <h5 class="mb-0">検索結果: <span class="fw-bold" style="color: var(--primary-color);">123件</span>
+                        </h5>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-outline-primary sort-btn active">
@@ -363,226 +498,300 @@
                 <!-- ジャンルクイックフィルター -->
                 <div class="mb-4">
                     <div class="d-flex gap-2 flex-wrap">
-                        <span class="badge genre-filter-badge active" style="background-color: #e5e7eb; color: #1f2937;">すべて</span>
-                        <span class="badge genre-filter-badge" style="background-color: #fee2e2; color: #991b1b;">ロック</span>
-                        <span class="badge genre-filter-badge" style="background-color: #fef3c7; color: #92400e;">ポップ</span>
-                        <span class="badge genre-filter-badge" style="background-color: #e0e7ff; color: #3730a3;">EDM</span>
-                        <span class="badge genre-filter-badge" style="background-color: #dbeafe; color: #1e40af;">ジャズ</span>
-                        <span class="badge genre-filter-badge" style="background-color: #fce7f3; color: #9f1239;">ヒップホップ</span>
+                        <span class="badge genre-filter-badge active"
+                            style="background-color: #e5e7eb; color: #1f2937;">すべて</span>
+                        <span class="badge genre-filter-badge"
+                            style="background-color: #fee2e2; color: #991b1b;">ロック</span>
+                        <span class="badge genre-filter-badge"
+                            style="background-color: #fef3c7; color: #92400e;">ポップ</span>
+                        <span class="badge genre-filter-badge"
+                            style="background-color: #e0e7ff; color: #3730a3;">EDM</span>
+                        <span class="badge genre-filter-badge"
+                            style="background-color: #dbeafe; color: #1e40af;">ジャズ</span>
+                        <span class="badge genre-filter-badge"
+                            style="background-color: #fce7f3; color: #9f1239;">ヒップホップ</span>
                     </div>
                 </div>
 
-                <!-- イベントカード -->
                 <div class="row g-4 mb-4">
                     <div class="col-md-6">
-                        <div class="card event-list-card">
-                            <img src="https://placehold.co/600x200/8b5cf6/ffffff?text=Summer+Fest" class="event-list-img" alt="Summer Festival">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <div>
+                        <a href="music-festival-detail.html" class="text-decoration-none text-dark">
+                            <div class="card event-list-card">
+                                <img src="img/SummerFest.png" class="event-list-img" alt="Summer Festival">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
                                         <span class="date-badge">
                                             <i class="bi bi-calendar-event"></i> 12月3日
                                         </span>
+                                        <span class="badge bg-success">販売中</span>
                                     </div>
-                                    <span class="badge bg-success">販売中</span>
-                                </div>
-                                <h5 class="card-title fw-bold mb-2">SUMMER MUSIC FESTIVAL 2024</h5>
-                                <p class="venue-badge mb-3">
-                                    <i class="bi bi-geo-alt-fill"></i> 東京ビッグサイト
-                                </p>
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background-color: #fee2e2; color: #991b1b;">ロック</span>
-                                    <span class="badge" style="background-color: #fef3c7; color: #92400e;">ポップ</span>
-                                </div>
-                                <p class="card-text text-muted small mb-3">
-                                    今年も夏の大型フェスが開催!豪華アーティスト50組以上が出演する国内最大級の音楽フェスティバル
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="price-tag">¥8,000〜</div>
-                                    <button class="btn btn-primary">
-                                        詳細を見る <i class="bi bi-arrow-right"></i>
-                                    </button>
+                                    <h5 class="card-title fw-bold mb-2">SUMMER MUSIC FESTIVAL 2024</h5>
+                                    <p class="venue-badge mb-3">
+                                        <i class="bi bi-geo-alt-fill"></i> 東京ビッグサイト
+                                    </p>
+                                    <div class="d-flex gap-2 mb-3">
+                                        <span class="badge"
+                                            style="background-color: #fee2e2; color: #991b1b;">ロック</span>
+                                        <span class="badge"
+                                            style="background-color: #fef3c7; color: #92400e;">ポップ</span>
+                                    </div>
+                                    <p class="card-text text-muted small mb-3">
+                                        今年も夏の大型フェスが開催!豪華アーティスト50組以上が出演する国内最大級の音楽フェスティバル
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price-tag">¥8,000〜</div>
+                                        <span class="btn btn-primary">詳細を見る <i class="bi bi-arrow-right"></i></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
+                    <!-- 2枚目 -->
                     <div class="col-md-6">
-                        <div class="card event-list-card">
-                            <img src="https://placehold.co/600x200/ec4899/ffffff?text=Rock+Night" class="event-list-img" alt="Rock Night">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <div>
+                        <a href="music-festival-rocknight.html" class="text-decoration-none text-dark">
+                            <div class="card event-list-card">
+                                <img src="img/RockNight.png" class="event-list-img" alt="Rock Night">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
                                         <span class="date-badge">
                                             <i class="bi bi-calendar-event"></i> 12月10日
                                         </span>
+                                        <span class="badge bg-success">販売中</span>
                                     </div>
-                                    <span class="badge bg-success">販売中</span>
-                                </div>
-                                <h5 class="card-title fw-bold mb-2">ROCK NIGHT JAPAN</h5>
-                                <p class="venue-badge mb-3">
-                                    <i class="bi bi-geo-alt-fill"></i> 大阪城ホール
-                                </p>
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background-color: #fee2e2; color: #991b1b;">ロック</span>
-                                    <span class="badge" style="background-color: #1f2937; color: white;">メタル</span>
-                                </div>
-                                <p class="card-text text-muted small mb-3">
-                                    日本を代表するロックバンドが集結する一夜限りのスペシャルライブ。圧倒的なパフォーマンスを体感せよ
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="price-tag">¥6,500〜</div>
-                                    <button class="btn btn-primary">
-                                        詳細を見る <i class="bi bi-arrow-right"></i>
-                                    </button>
+                                    <h5 class="card-title fw-bold mb-2">ROCK NIGHT JAPAN</h5>
+                                    <p class="venue-badge mb-3">
+                                        <i class="bi bi-geo-alt-fill"></i> 大阪城ホール
+                                    </p>
+                                    <div class="d-flex gap-2 mb-3">
+                                        <span class="badge" style="background-color:#fee2e2;color:#991b1b;">ロック</span>
+                                        <span class="badge" style="background-color:#1f2937;color:white;">メタル</span>
+                                    </div>
+                                    <p class="card-text text-muted small mb-3">
+                                        日本を代表するロックバンドが集結する一夜限りのスペシャルライブ。圧倒的なパフォーマンスを体感せよ
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price-tag">¥6,500〜</div>
+                                        <span class="btn btn-primary">詳細を見る <i class="bi bi-arrow-right"></i></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            <div class="card event-list-card">
+                                <img src="img/JazzLive.png" class="event-list-img" alt="Jazz Live">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <span class="date-badge">
+                                                <i class="bi bi-calendar-event"></i> 12月15日
+                                            </span>
+                                        </div>
+                                        <span class="badge bg-warning text-dark">残りわずか</span>
+                                    </div>
+                                    <h5 class="card-title fw-bold mb-2">TOKYO JAZZ SESSION</h5>
+                                    <p class="venue-badge mb-3">
+                                        <i class="bi bi-geo-alt-fill"></i> ブルーノート東京
+                                    </p>
+                                    <div class="d-flex gap-2 mb-3">
+                                        <span class="badge"
+                                            style="background-color: #dbeafe; color: #1e40af;">ジャズ</span>
+                                        <span class="badge"
+                                            style="background-color: #ddd6fe; color: #5b21b6;">ブルース</span>
+                                    </div>
+                                    <p class="card-text text-muted small mb-3">
+                                        世界的ジャズミュージシャンによる贅沢なセッションライブ。大人の音楽空間をお楽しみください
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price-tag">¥9,800〜</div>
+                                        <button class="btn btn-primary">
+                                            詳細を見る <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
                     </div>
 
                     <div class="col-md-6">
-                        <div class="card event-list-card">
-                            <img src="https://placehold.co/600x200/06b6d4/ffffff?text=Jazz+Live" class="event-list-img" alt="Jazz Live">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <div>
-                                        <span class="date-badge">
-                                            <i class="bi bi-calendar-event"></i> 12月15日
-                                        </span>
+                        <a href="#" class="text-decoration-none text-dark">
+                            <div class="card event-list-card">
+                                <img src="img/EDMParty.png" class="event-list-img" alt="EDM Party">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <span class="date-badge">
+                                                <i class="bi bi-calendar-event"></i> 12月20日
+                                            </span>
+                                        </div>
+                                        <span class="badge bg-success">販売中</span>
                                     </div>
-                                    <span class="badge bg-warning text-dark">残りわずか</span>
-                                </div>
-                                <h5 class="card-title fw-bold mb-2">TOKYO JAZZ SESSION</h5>
-                                <p class="venue-badge mb-3">
-                                    <i class="bi bi-geo-alt-fill"></i> ブルーノート東京
-                                </p>
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background-color: #dbeafe; color: #1e40af;">ジャズ</span>
-                                    <span class="badge" style="background-color: #ddd6fe; color: #5b21b6;">ブルース</span>
-                                </div>
-                                <p class="card-text text-muted small mb-3">
-                                    世界的ジャズミュージシャンによる贅沢なセッションライブ。大人の音楽空間をお楽しみください
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="price-tag">¥9,800〜</div>
-                                    <button class="btn btn-primary">
-                                        詳細を見る <i class="bi bi-arrow-right"></i>
-                                    </button>
+                                    <h5 class="card-title fw-bold mb-2">ELECTRO WAVE FESTIVAL</h5>
+                                    <p class="venue-badge mb-3">
+                                        <i class="bi bi-geo-alt-fill"></i> 幕張メッセ
+                                    </p>
+                                    <div class="d-flex gap-2 mb-3">
+                                        <span class="badge"
+                                            style="background-color: #e0e7ff; color: #3730a3;">EDM</span>
+                                        <span class="badge"
+                                            style="background-color: #dbeafe; color: #1e40af;">エレクトロ</span>
+                                    </div>
+                                    <p class="card-text text-muted small mb-3">
+                                        世界トップクラスのDJが集結!踊り明かす最高の一夜。最先端のサウンドシステムで極上の体験を
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price-tag">¥7,500〜</div>
+                                        <button class="btn btn-primary">
+                                            詳細を見る <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <div class="col-md-6">
-                        <div class="card event-list-card">
-                            <img src="https://placehold.co/600x200/a855f7/ffffff?text=EDM+Party" class="event-list-img" alt="EDM Party">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <div>
-                                        <span class="date-badge">
-                                            <i class="bi bi-calendar-event"></i> 12月20日
-                                        </span>
+                        <a href="#" class="text-decoration-none text-dark">
+                            <div class="card event-list-card">
+                                <img src="img/AcousticLive.png" class="event-list-img" alt="Acoustic Live">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <span class="date-badge">
+                                                <i class="bi bi-calendar-event"></i> 12月25日
+                                            </span>
+                                        </div>
+                                        <span class="badge bg-success">販売中</span>
                                     </div>
-                                    <span class="badge bg-success">販売中</span>
-                                </div>
-                                <h5 class="card-title fw-bold mb-2">ELECTRO WAVE FESTIVAL</h5>
-                                <p class="venue-badge mb-3">
-                                    <i class="bi bi-geo-alt-fill"></i> 幕張メッセ
-                                </p>
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background-color: #e0e7ff; color: #3730a3;">EDM</span>
-                                    <span class="badge" style="background-color: #dbeafe; color: #1e40af;">エレクトロ</span>
-                                </div>
-                                <p class="card-text text-muted small mb-3">
-                                    世界トップクラスのDJが集結!踊り明かす最高の一夜。最先端のサウンドシステムで極上の体験を
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="price-tag">¥7,500〜</div>
-                                    <button class="btn btn-primary">
-                                        詳細を見る <i class="bi bi-arrow-right"></i>
-                                    </button>
+                                    <h5 class="card-title fw-bold mb-2">WINTER ACOUSTIC NIGHT</h5>
+                                    <p class="venue-badge mb-3">
+                                        <i class="bi bi-geo-alt-fill"></i> なんばHatch
+                                    </p>
+                                    <div class="d-flex gap-2 mb-3">
+                                        <span class="badge"
+                                            style="background-color: #d1fae5; color: #065f46;">アコースティック</span>
+                                        <span class="badge"
+                                            style="background-color: #fef3c7; color: #92400e;">フォーク</span>
+                                    </div>
+                                    <p class="card-text text-muted small mb-3">
+                                        心温まる冬の夜に、アコースティックサウンドを。アットホームな雰囲気の中で音楽を楽しむ
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price-tag">¥5,500〜</div>
+                                        <button class="btn btn-primary">
+                                            詳細を見る <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
+                    <!-- 6枚目 -->
                     <div class="col-md-6">
-                        <div class="card event-list-card">
-                            <img src="https://placehold.co/600x200/10b981/ffffff?text=Acoustic+Live" class="event-list-img" alt="Acoustic Live">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <div>
-                                        <span class="date-badge">
-                                            <i class="bi bi-calendar-event"></i> 12月25日
-                                        </span>
+                        <a href="#" class="text-decoration-none text-dark">
+                            <div class="card event-list-card">
+                                <img src="img/HipHopLive.png" class="event-list-img" alt="Hip Hop">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <span class="date-badge">
+                                                <i class="bi bi-calendar-event"></i> 12月28日
+                                            </span>
+                                        </div>
+                                        <span class="badge bg-danger">完売間近</span>
                                     </div>
-                                    <span class="badge bg-success">販売中</span>
-                                </div>
-                                <h5 class="card-title fw-bold mb-2">WINTER ACOUSTIC NIGHT</h5>
-                                <p class="venue-badge mb-3">
-                                    <i class="bi bi-geo-alt-fill"></i> なんばHatch
-                                </p>
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background-color: #d1fae5; color: #065f46;">アコースティック</span>
-                                    <span class="badge" style="background-color: #fef3c7; color: #92400e;">フォーク</span>
-                                </div>
-                                <p class="card-text text-muted small mb-3">
-                                    心温まる冬の夜に、アコースティックサウンドを。アットホームな雰囲気の中で音楽を楽しむ
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="price-tag">¥5,500〜</div>
-                                    <button class="btn btn-primary">
-                                        詳細を見る <i class="bi bi-arrow-right"></i>
-                                    </button>
+                                    <h5 class="card-title fw-bold mb-2">URBAN BEATS FESTIVAL</h5>
+                                    <p class="venue-badge mb-3">
+                                        <i class="bi bi-geo-alt-fill"></i> Zepp Tokyo
+                                    </p>
+                                    <div class="d-flex gap-2 mb-3">
+                                        <span class="badge"
+                                            style="background-color: #fce7f3; color: #9f1239;">ヒップホップ</span>
+                                        <span class="badge"
+                                            style="background-color: #dbeafe; color: #1e40af;">R&B</span>
+                                    </div>
+                                    <p class="card-text text-muted small mb-3">
+                                        日本のヒップホップシーンを代表するアーティストが集結。アーバンカルチャーの最前線を体感
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="price-tag">¥6,000〜</div>
+                                        <button class="btn btn-primary">
+                                            詳細を見る <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                    </a>
+                </div>
+            </div>
 
-                    <div class="col-md-6">
-                        <div class="card event-list-card">
-                            <img src="https://placehold.co/600x200/f59e0b/ffffff?text=Hip+Hop" class="event-list-img" alt="Hip Hop">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <div>
-                                        <span class="date-badge">
-                                            <i class="bi bi-calendar-event"></i> 12月28日
-                                        </span>
-                                    </div>
-                                    <span class="badge bg-danger">完売間近</span>
-                                </div>
-                                <h5 class="card-title fw-bold mb-2">URBAN BEATS FESTIVAL</h5>
-                                <p class="venue-badge mb-3">
-                                    <i class="bi bi-geo-alt-fill"></i> Zepp Tokyo
-                                </p>
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background-color: #fce7f3; color: #9f1239;">ヒップホップ</span>
-                                    <span class="badge" style="background-color: #dbeafe; color: #1e40af;">R&B</span>
-                                </div>
-                                <p class="card-text text-muted small mb-3">
-                                    日本のヒップホップシーンを代表するアーティストが集結。アーバンカルチャーの最前線を体感
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="price-tag">¥6,000〜</div>
-                                    <button class="btn btn-primary">
-                                        詳細を見る <i class="bi bi-arrow-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+            <!-- ページネーション -->
+            <nav aria-label="ページネーション" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#"><i class="bi bi-chevron-left"></i>前へ</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">次へ <i class="bi bi-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+
+    <!-- フッター -->
+    <footer class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-music-note-beamed"></i> LiveHub</h5>
+                    <p class="text-light">音楽で繋がる、最高の体験をあなたに。</p>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <h6 class="fw-bold mb-3">サイト情報</h6>
+                    <ul class="list-unstyled">
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">About</a></li>
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">利用規約</a></li>
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">プライバシー</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <h6 class="fw-bold mb-3">サポート</h6>
+                    <ul class="list-unstyled">
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">ヘルプ</a></li>
+                        <li class="footer-hover"><a href="form.html" class="text-light text-decoration-none">お問い合わせ</a>
+                        </li>
+                        <li class="footer-hover"><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 class="fw-bold mb-3">フォローする</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light footer-hover"><i class="bi bi-twitter fs-4"></i></a>
+                        <a href="#" class="text-light footer-hover"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-light footer-hover"><i class="bi bi-youtube fs-4"></i></a>
+                        <a href="#" class="text-light footer-hover"><i class="bi bi-spotify fs-4"></i></a>
                     </div>
                 </div>
+            </div>
+            <hr class="border-light">
+            <p class="text-center text-light mb-0">&copy; 2024 LiveHub. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-                <!-- ページネーション -->
-                <nav aria-label="ページネーション">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">
-                                <i class="bi bi-chevron-left"></i> 前へ
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="
+</html>
